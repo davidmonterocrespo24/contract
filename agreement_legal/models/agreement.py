@@ -26,8 +26,8 @@ class Agreement(models.Model):
         copy=False,
         help="The revision will increase with every save event.",
     )
-    description = fields.Html(
-        string="Description", tracking=True, help="Description of the agreement"
+    description = fields.Html(string="Description", render_engine='qweb', translate=True, sanitize=False,
+        tracking=True, help="Description of the agreement"
     )
     dynamic_description = fields.Html(
         compute="_compute_dynamic_description",
