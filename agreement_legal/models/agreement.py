@@ -26,10 +26,10 @@ class Agreement(models.Model):
         copy=False,
         help="The revision will increase with every save event.",
     )
-    description = fields.Text(
+    description = fields.Html(
         string="Description", tracking=True, help="Description of the agreement"
     )
-    dynamic_description = fields.Text(
+    dynamic_description = fields.Html(
         compute="_compute_dynamic_description",
         string="Dynamic Description",
         help="Compute dynamic description",
@@ -67,13 +67,13 @@ class Agreement(models.Model):
         tracking=True,
         help="Number of Days to be notified before changes.",
     )
-    special_terms = fields.Text(
+    special_terms = fields.Html(
         string="Special Terms",
         tracking=True,
         help="Any terms that you have agreed to and want to track on the "
         "agreement/contract.",
     )
-    dynamic_special_terms = fields.Text(
+    dynamic_special_terms = fields.Html(
         compute="_compute_dynamic_special_terms",
         string="Dynamic Special Terms",
         help="Compute dynamic special terms",
