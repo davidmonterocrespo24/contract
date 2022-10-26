@@ -296,7 +296,7 @@ class Agreement(models.Model):
 
     # compute the dynamic content for jinja expression
     def _compute_dynamic_description(self):
-        MailTemplates = self.env['mail.render.mixin']
+        MailTemplates = self.env['mail.template']
         for agreement in self:
             lang = agreement.partner_id.lang or "en_US"
             description = MailTemplates.with_context(lang=lang)._render_template(
