@@ -101,6 +101,33 @@
                             <br></br>
                             <br></br>
                             <br></br>
+
+                            <table class="table table-sm o_main_table" name="invoice_line_table">
+                                <thead>
+                                    <tr>
+                                        <th name="th_description" class="text-left">
+                                            <span>Descripción</span>
+                                        </th>
+                                        <th name="th_description" class="text-left">
+                                            <span>Precio</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="invoice_tbody">
+                                    <t t-foreach="doc.line_ids" t-as="line">
+                                        <tr t-att-class="'bg-200 font-weight-bold'">
+                                            <td>
+                                                <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                            </td>
+                                            <td t-attf-class="text-right">
+                                                <span class="text-nowrap" t-field="line.price_unit"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+
                             <t t-if="special_term">
                                 <h2>Special Terms</h2>
                                 <div name="special_term">
@@ -167,7 +194,7 @@
                         <br></br>
                         <div t-foreach="doc.appendix_ids" t-as="a">
                             <div class="page">
-                                <h1  t-field="a.title" style="page-break-before: always;" />
+                                <h1 t-field="a.title" style="page-break-before: always;"/>
                                 <p t-field="a.dynamic_content"/>
                             </div>
                         </div>

@@ -13,6 +13,7 @@ class AgreementLine(models.Model):
     agreement_id = fields.Many2one("agreement", string="Agreement", ondelete="cascade")
     qty = fields.Float(string="Quantity")
     uom_id = fields.Many2one("uom.uom", string="Unit of Measure", required=True)
+    price_unit = fields.Float('Unit Price', required=True, digits='Product Price', default=0.0)
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
