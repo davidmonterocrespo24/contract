@@ -3,7 +3,7 @@
     <record id="partner_agreement_contract_document" model="ir.actions.report">
         <field name="name">Agreement</field>
         <field name="model">agreement</field>
-        <field name="binding_model_id" ref="model_agreement" />
+        <field name="binding_model_id" ref="model_agreement"/>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">agreement_legal.report_agreement_document</field>
         <field name="report_file">agreement_legal.report_agreement_document</field>
@@ -13,7 +13,7 @@
     <record id="partner_agreement_contract_document_preview" model="ir.actions.report">
         <field name="name">Agreement Preview</field>
         <field name="model">agreement</field>
-        <field name="binding_model_id" ref="model_agreement" />
+        <field name="binding_model_id" ref="model_agreement"/>
         <field name="report_type">qweb-html</field>
         <field name="report_name">agreement_legal.report_agreement_document</field>
         <field name="report_file">agreement_legal.report_agreement_document</field>
@@ -26,14 +26,14 @@
                 <t t-foreach="docs" t-as="doc">
                     <t t-call="web.external_layout">
                         <div class="page">
-                            <h1 t-field="doc.name" />
+                            <h1 t-field="doc.name"/>
                             <div name="description">
-                                <span t-field="doc.dynamic_description" />
+                                <span t-field="doc.dynamic_description"/>
                             </div>
                             <h2>Parties</h2>
                             <div name="parties">
                                 <t t-if="doc.use_parties_content">
-                                    <p t-field="doc.dynamic_parties" />
+                                    <p t-field="doc.dynamic_parties"/>
                                 </t>
                             </div>
                             <t t-if="not doc.use_parties_content">
@@ -45,9 +45,9 @@
                                     />
                                 </div>
                                 <div name="company_contact">
-                                    Represented by <span
-                                        t-field="doc.company_contact_id.name"
-                                    />.
+                                    Represented by<span
+                                    t-field="doc.company_contact_id.name"
+                                />.
                                 </div>
                                 <h3>Partner Information</h3>
                                 <div name="partner_address">
@@ -57,70 +57,61 @@
                                     />
                                 </div>
                                 <div name="partner_contact">
-                                    Represented by <span
-                                        t-field="doc.partner_contact_id.name"
-                                    />.
+                                    Represented by<span
+                                    t-field="doc.partner_contact_id.name"
+                                />.
                                 </div>
                             </t>
                             <h2>Agreement</h2>
                             <h3>Recitals</h3>
-                            <table class="table table-condensed">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <ol>
-                                                <li
-                                                    t-foreach="doc.recital_ids"
-                                                    t-as="r"
-                                                >
-                                                    <t t-if="r.title">
-                                                        <h3 t-field="r.title" />
-                                                    </t>
-                                                    <p t-field="r.dynamic_content" />
-                                                </li>
-                                            </ol>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="table table-condensed">
-                                <tbody class="section_tbody">
-                                    <tr>
-                                        <td>
-                                            <ol>
-                                                <li
-                                                    t-foreach="doc.sections_ids"
-                                                    t-as="s"
-                                                >
-                                                    <t t-if="s.title">
-                                                        <h3 t-field="s.title" />
-                                                    </t>
-                                                    <p t-field="s.dynamic_content" />
-                                                    <ol>
-                                                        <li
-                                                            t-foreach="s.clauses_ids"
-                                                            t-as="c"
-                                                        >
-                                                            <t t-if="c.title">
-                                                                <h4 t-field="c.title" />
-                                                            </t>
-                                                            <p
-                                                                t-field="c.dynamic_content"
-                                                            />
-                                                        </li>
-                                                    </ol>
-                                                </li>
-                                            </ol>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <t t-foreach="doc.recital_ids" t-as="r">
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <t t-if="r.title">
+                                    <h3 t-field="r.title"/>
+                                </t>
+                                <t t-esc="r.dynamic_content"/>
+                                <p style="page-break-after: always;"/>
+
+                            </t>
+                            <p style="page-break-after: always;"/>
+                            <t t-foreach="doc.sections_ids" t-as="s">
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <t t-if="s.title">
+                                    <h3 t-field="s.title"/>
+                                </t>
+                                <p t-field="s.dynamic_content"/>
+                                <ol>
+                                    <li t-foreach="s.clauses_ids" t-as="c">
+                                        <t t-if="c.title">
+                                            <h4 t-field="c.title"/>
+                                        </t>
+                                        <p t-field="c.dynamic_content"/>
+                                    </li>
+                                </ol>
+                                <p style="page-break-after: always;"/>
+                            </t>
+                            <p style="page-break-after: always;"/>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <t t-if="special_term">
                                 <h2>Special Terms</h2>
                                 <div name="special_term">
-                                    <p t-field="doc.dynamic_special_terms" />
+                                    <p t-field="doc.dynamic_special_terms"/>
                                 </div>
                             </t>
+                            <p style="page-break-after: always;"/>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                             <h2>Signatures</h2>
                             <table class="table table-condensed">
                                 <theader>
@@ -132,46 +123,52 @@
                                 <tbody class="section_tbody">
                                     <tr>
                                         <td>
-                                            <p t-field="doc.partner_id" />
-                                            <p>By: </p>
+                                            <p t-field="doc.partner_id"/>
+                                            <p>By:</p>
                                             <p>
-                                                Name: <span
+                                                Name:
+                                                <span
                                                     t-field="doc.partner_contact_id.name"
                                                 />
                                             </p>
                                             <p>
-                                                Title: <span
+                                                Title:
+                                                <span
                                                     t-field="doc.partner_contact_id.function"
                                                 />
                                             </p>
-                                            <p>Date: </p>
+                                            <p>Date:</p>
                                         </td>
                                         <td>
-                                            <p t-field="doc.company_id.partner_id" />
-                                            <p>By: </p>
+                                            <p t-field="doc.company_id.partner_id"/>
+                                            <p>By:</p>
                                             <p>
-                                                Name: <span
+                                                Name:
+                                                <span
                                                     t-field="doc.company_contact_id.name"
                                                 />
                                             </p>
                                             <p>
-                                                Title: <span
+                                                Title:
+                                                <span
                                                     t-field="doc.company_contact_id.function"
                                                 />
                                             </p>
-                                            <p>Date: </p>
+                                            <p>Date:</p>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <p style="page-break-after: always;"/>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
                         <div t-foreach="doc.appendix_ids" t-as="a">
                             <div class="page">
-                                <h1
-                                    t-field="a.title"
-                                    style="page-break-before: always;"
-                                />
-                                <p t-field="a.dynamic_content" />
+                                <h1  t-field="a.title" style="page-break-before: always;" />
+                                <p t-field="a.dynamic_content"/>
                             </div>
                         </div>
                     </t>

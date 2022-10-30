@@ -38,8 +38,12 @@
     "assets": {
         "web.assets_backend": [
             "agreement_legal/static/src/js/**/*",
+            "agreement_legal/static/src/css/**/*",
         ],
         "web.assets_qweb": ["agreement_legal/static/src/xml/**/*"],
+        'web.report_assets_common': [
+            "agreement_legal/static/src/css/**/*",
+        ],
     },
     "application": True,
     "development_status": "Beta",
