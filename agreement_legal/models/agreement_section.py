@@ -9,9 +9,16 @@ class AgreementSection(models.Model):
     _description = "Agreement Sections"
     _order = "sequence"
 
+    logo = fields.Binary("Image")
     name = fields.Char(required=True)
     title = fields.Char(help="The title is displayed on the PDF. The name is not.")
+    sub_title = fields.Char("Sub Title")
+    color = fields.Char('Color')
+    border_color = fields.Char('Border Color')
     sequence = fields.Integer()
+    type = fields.Selection([
+        ('normal', 'Normal'),
+        ('principal', 'Principal')], string='Type', default='normal')
     agreement_id = fields.Many2one("agreement", string="Agreement", ondelete="cascade")
     clauses_ids = fields.One2many(
         "agreement.clause", "section_id", string="Clauses", copy=True

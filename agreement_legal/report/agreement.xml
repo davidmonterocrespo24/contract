@@ -25,6 +25,7 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="doc">
                     <t t-call="web.external_layout">
+                        <p style="page-break-after: always;"/>
                         <div class="page">
                             <h1 t-field="doc.name"/>
                             <div name="description">
@@ -188,16 +189,106 @@
                             </table>
                         </div>
                         <p style="page-break-after: always;"/>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
                         <div t-foreach="doc.appendix_ids" t-as="a">
                             <div class="page">
                                 <h1 t-field="a.title" style="page-break-before: always;"/>
                                 <p t-field="a.dynamic_content"/>
                             </div>
                         </div>
+                        <p style="page-break-after: always;"/>
+                        <t t-foreach="doc.sections_ids" t-as="section">
+                            <t t-if="section.type == 'principal'">
+                                <div class="page" t-attf-style="background-color: {{section.color}};padding-bottom:32px;">
+                                    <div class="row" style="padding-top:32px;">
+                                        <div class="col-10"/>
+                                        <div class="col-2">
+                                            <img src="/agreement_legal/static/src/img/barcode.png" style="width:80%;"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6" style="position:relative;top:-30px;">
+                                            <div
+                                                t-attf-style="border: 4px solid {{section.border_color}};border-left:none;border-radius: 10px;border-top-left-radius: none;border-bottom-left-radius: none;background-color: white;width:100%;">
+                                                <div class="row">
+                                                    <div class="col-2"/>
+                                                    <div class="col-10">
+                                                        <img t-att-src="image_data_uri(section.logo)"
+                                                             style="width:90px;height:140px;padding-top:30px;padding-bottom:30px;"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <h1 class="text-white" style="padding-top:65px;"><t t-esc="section.name"/> </h1>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2"/>
+                                        <div class="col-8">
+                                            <h1 class="text-white" style="font-weight:bold;padding-bottom:16px;">
+                                                <t t-esc="section.title"/>
+                                            </h1>
+                                            <h3 class="text-white" style="padding-bottom:40px;">
+                                                <t t-esc="section.sub_title"/>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2"/>
+                                        <div class="col-8">
+                                             <t t-set="clauses" t-value="len(section.clauses_ids)"/>
+                                            <t t-foreach="range(0, clauses, 2)" t-as="item">
+                                            <div class="row">
+<!--                                                <t t-foreach="section.clauses_ids" t-as="clauses">-->
+                                                    <div class="col-6">
+                                                        <img t-att-src="image_data_uri(section.clauses_ids[item].icon)" style="width:90px;height:90px;padding-bottom:16px;"/>
+                                                        <h5 class="text-white" style="padding-bottom:40px;">
+                                                            <t t-esc="section.clauses_ids[item].title"/>
+                                                        </h5>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <img t-att-src="image_data_uri(section.clauses_ids[item + 1].icon)" style="width:90px;height:90px;padding-bottom:16px;"/>
+                                                        <h5 class="text-white" style="padding-bottom:40px;">
+                                                            <t t-esc="section.clauses_ids[item + 1].title"/>
+                                                        </h5>
+                                                    </div>
+<!--                                                </t>-->
+<!--                                                <div class="col-6">-->
+<!--                                                    <img src="/agreement_legal/static/src/img/sale.jpg"-->
+<!--                                                         style="width:90px;height:90px;padding-bottom:16px;"/>-->
+<!--                                                    <h5 class="text-white" style="padding-bottom:40px;">-->
+<!--                                                        Diseño de Factura de Compra-->
+<!--                                                        a gusto del cliente. Configura-->
+<!--                                                        el cuerpo del mail a su gusto.-->
+<!--                                                    </h5>-->
+<!--                                                </div>-->
+                                            </div>
+                                            </t>
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-6">-->
+<!--                                                    <img src="/agreement_legal/static/src/img/sale.jpg"-->
+<!--                                                         style="width:90px;height:90px;padding-bottom:16px;"/>-->
+<!--                                                    <h5 class="text-white" style="padding-bottom:40px;">-->
+<!--                                                        Conexión con el módulo de-->
+<!--                                                        Inventario, Facturacion, Contactos,-->
+<!--                                                        Compras, etc.-->
+<!--                                                    </h5>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-6">-->
+<!--                                                    <img src="/agreement_legal/static/src/img/sale.jpg"-->
+<!--                                                         style="width:90px;height:90px;padding-bottom:16px;"/>-->
+<!--                                                    <h5 class="text-white" style="padding-bottom:40px;">-->
+<!--                                                        Diseño de Factura de Compra-->
+<!--                                                        a gusto del cliente. Configura-->
+<!--                                                        el cuerpo del mail a su gusto.-->
+<!--                                                    </h5>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
                     </t>
                 </t>
             </t>

@@ -11,6 +11,7 @@ class AgreementClause(models.Model):
 
     name = fields.Char(required=True)
     title = fields.Char(help="The title is displayed on the PDF. The name is not.")
+    icon = fields.Binary('Icon')
     sequence = fields.Integer()
     agreement_id = fields.Many2one("agreement", string="Agreement", ondelete="cascade")
     temp_agreement_id = fields.Many2one(
